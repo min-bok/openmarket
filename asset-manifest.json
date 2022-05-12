@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/openmarket/static/css/main.073c9b0a.css",
+    "main.js": "/openmarket/static/js/main.f5327cd5.js",
+    "static/js/787.998e0038.chunk.js": "/openmarket/static/js/787.998e0038.chunk.js",
+    "static/media/logo.svg": "/openmarket/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/openmarket/index.html",
+    "main.073c9b0a.css.map": "/openmarket/static/css/main.073c9b0a.css.map",
+    "main.f5327cd5.js.map": "/openmarket/static/js/main.f5327cd5.js.map",
+    "787.998e0038.chunk.js.map": "/openmarket/static/js/787.998e0038.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.f5327cd5.js"
+  ]
+}
