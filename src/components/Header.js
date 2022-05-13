@@ -1,33 +1,123 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import logo from "../img/Logo-hodu.svg";
+import cartIcon from "../img/icon-shopping-cart.svg"
+import userIcon from "../img/icon-user.svg";
+
+const Main = styled.div`
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 5.625rem;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0px 4px 5px 0px #0000001A;
+    padding: 0 20rem 0 20rem;
+    z-index: 999;
+`
+// 로고
+const Logo = styled.img`
+    width: 7.75rem;
+    height: 2.375rem;
+    margin-right: 1.875rem;
+    cursor: pointer;
+`
+
+// 검색바
+const InputWrap = styled.div``
+
+const SearchBar = styled.input`
+    width: 25rem;
+    height: 2.875rem;
+    border-radius: 50px;
+    border: 2px solid #21BF48;
+    text-indent: 22px;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #767676;
+`
+
+// const SearchIcon = styled.img`
+//     position: absolute;
+//     width: 1.75rem;
+//     height: 1.75rem;
+//     background-size: 1.75rem;
+//     right: 1.375rem;
+//     background-color: red;
+//     cursor: pointer;
+// `
+
+// 장바구니, 로그인 버튼
+const MenuWrap = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+`
+
+// 장바구니 버튼
+const CartWrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.625rem;
+    cursor: pointer;
+`
+const CartIcon = styled.img`
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+`
+const CartText = styled.p`
+    margin-top: 0.25rem;
+    margin-left: 0.125rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #767676;
+    cursor: pointer;
+`
+
+// 로그인 버튼
+const UserWrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+`
+const UserIcon = styled(CartIcon)`
+`
+const UserText = styled(CartText)``
 
 function Header() {
     return (
-        <header>
-            <Link to ={`/HODU`}>
-                <button className={`${style.LogoHodu} btnSetting`}></button>
-            </Link>
-            <div className='searchBar'>
-                <input className='searchPlace' type="text" placeholder='상품을 검색해보세요!'/>
-                <i className={`${style.searchIcon}`}></i>
-            </div>
-
-            <div className={`${style.iconWrap}`}>
-            <Link to = {`/cart`}>
-                <div className={`${style.cartWrap}`}>
-                    <button className={`${style.cartIcon} btnSetting`}></button>
-                    <p className={`${style.cartText}`}>장바구니</p>
-                </div>
+        <Main>
+            <Link to ={`/openmarket`}>
+                <Logo src={logo}></Logo>
             </Link>
 
-            <Link to = {`/login`}>
-                <div className={`${style.userWrap}`}>
-                    <button className={`${style.userIcon} btnSetting`}></button>
-                    <p className={`${style.userText}`}>로그인</p>
-                </div>
-            </Link>
-            </div>
-        </header>
+            <InputWrap>
+                <SearchBar placeholder='상품을 검색해보세요!'/>
+                {/* <SearchIcon></SearchIcon> */}
+            </InputWrap>
+
+            <MenuWrap>
+                <Link to = {`/cart`}>
+                    <CartWrap>
+                        <CartIcon src={cartIcon} />
+                        <CartText>장바구니</CartText>
+                    </CartWrap>
+                </Link>
+
+                <Link to = {`/login`}>
+                    <UserWrap>
+                        <UserIcon src={userIcon}/>
+                        <UserText>로그인</UserText>
+                    </UserWrap>
+                </Link>
+            </MenuWrap>
+        </Main>
     );
 }
 
