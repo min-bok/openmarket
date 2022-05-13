@@ -18,12 +18,12 @@
 </br>
 
 # **👀 프로젝트 데모**
-### https://minbok-1998.github.io/HODU/
+https://minbok-1998.github.io/HODU/
 
 </br>
 
 # **✏ Skills**
-### React, TypeScript, react-router-dom, axios
+React, TypeScript, react-router-dom, axios
 
 </br>
 
