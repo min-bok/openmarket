@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Cont = styled.div`
@@ -50,13 +51,16 @@ function Products() {
     return(
         <>
             {product.map((product) => (
-            <Cont key={product.product_id}>
-                <Img src={product.image}></Img>
-                <Seller fontSize={'1rem'} fontWeight={'400'} color={'#767676'}>{product.seller_store}</Seller>
-                <Title fontSize={'1.125rem'} fontWeight={'400'} color={'#000000'}>{product.product_name}</Title>
-                <Price fontSize={'1.5rem'} fontWeight={'700'} color={'#000000'}>{product.price}</Price>
-            </Cont>
+                <Link to = {`/goods/${product.product_id}`} key={product.product_id}>
+                    <Cont>
+                        <Img src={product.image}></Img>
+                        <Seller fontSize={'1rem'} fontWeight={'400'} color={'#767676'}>{product.seller_store}</Seller>
+                        <Title fontSize={'1.125rem'} fontWeight={'400'} color={'#000000'}>{product.product_name}</Title>
+                        <Price fontSize={'1.5rem'} fontWeight={'700'} color={'#000000'}>{product.price}</Price>
+                    </Cont>
+                </Link>
             ))}
+
         </>
     )
 }
