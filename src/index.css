@@ -20,6 +20,7 @@ html {
 
 body {
   width: 100vw;
+  background-color: pink;
 }
 
 a { text-decoration: none;}
