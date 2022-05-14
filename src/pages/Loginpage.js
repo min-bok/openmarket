@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import Mainpage from './Mainpage';
+import { Link, useNavigate } from 'react-router-dom';
 
 const FormWrap = styled.form`
     display: flex;
@@ -39,8 +41,6 @@ const Errormsg = styled.div`
 `
 
 function Loginpage() {
-    // const url = `https://openmarket.weniv.co.kr/accounts/login/`;
-
     const [userId, setUserId] = useState('');
     const [userPwd, setUserPwd] = useState('');
     const [userType, setUserType] = useState('');
@@ -49,10 +49,9 @@ function Loginpage() {
 
     const onLogin = () => {
 
-        // buyer1
+        // buyer1, buyer2, buyer3
         // hodu0910
         // BUYER
-
 
         axios({
             method: 'post',
@@ -67,6 +66,9 @@ function Loginpage() {
         .then(res => {
             const { accessToken } = res.data;
             axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+            
+            // 로컬스토리지에 로그인 정보 저장
+            localStorage.setItem('id', userId);
             setSuccess(true);
         })
         .catch(err => {
@@ -90,7 +92,9 @@ function Loginpage() {
     return(
         <>
         {success ? (
-            <h1>로그인 성공!</h1>
+            <Link to={`/openmarket`}>
+                <Mainpage />
+            </Link>
         ) : (
             <FormWrap onSubmit={handleSubmit}>
                 <p>{errMsg}</p>
@@ -105,11 +109,11 @@ function Loginpage() {
                     placeholder='비밀번호' 
                     onChange={(e) => {setUserPwd(e.target.value);}} 
                 />
-                <Type
+                {/* <Type
                     type='text'
                     placeholder='타입'
                     required
-                    onChange={(e) => {setUserType(e.target.value);}} />
+                    onChange={(e) => {setUserType(e.target.value);}} /> */}
                 <LoginBtn type='submit'>로그인</LoginBtn>
             </FormWrap>
         )}

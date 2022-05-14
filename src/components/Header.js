@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from "../img/Logo-hodu.svg";
@@ -91,6 +91,17 @@ const UserIcon = styled(CartIcon)`
 const UserText = styled(CartText)``
 
 function Header() {
+    const [isLogin, setIsLogin] = useState(false);
+
+    useEffect(() => {
+        if(localStorage.getItem('id') === null) {
+            setIsLogin(false)
+        } else {
+            setIsLogin(true)
+        }
+    },[])
+
+
     return (
         <Main>
             <Link to ={`/openmarket`}>
@@ -110,12 +121,22 @@ function Header() {
                     </CartWrap>
                 </Link>
 
-                <Link to = {`/login`}>
-                    <UserWrap>
-                        <UserIcon src={userIcon}/>
-                        <UserText>로그인</UserText>
-                    </UserWrap>
-                </Link>
+                {isLogin ? (
+                    <Link to='#'>
+                        <UserWrap>
+                            <UserIcon src={userIcon}/>
+                            <UserText>마이페이지</UserText>
+                        </UserWrap>
+                    </Link>
+                ) : 
+                (
+                    <Link to = {`/openmarket/login`}>
+                        <UserWrap>
+                            <UserIcon src={userIcon}/>
+                            <UserText>로그인</UserText>
+                        </UserWrap>
+                    </Link>
+                )}
             </MenuWrap>
         </Main>
     );
