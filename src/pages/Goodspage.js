@@ -3,8 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import Header from '../components/Header'
 
-const Cont = styled.div``
+const Cont = styled.div`
+  padding-top: 5.625rem;
+`
 
 const Img = styled.img``
 
@@ -45,6 +48,7 @@ function Goodspage() {
 
     return(
         <>
+          <Header />
           <Cont key={goods.product_id}>
             <Img src={goods.image}></Img>
             <Store>{goods.seller_store}</Store>
