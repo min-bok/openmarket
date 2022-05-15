@@ -90,7 +90,7 @@ const UserIcon = styled(CartIcon)`
 `
 const UserText = styled(CartText)``
 
-function Header() {
+function Header({ success }) {
     const [isLogin, setIsLogin] = useState(false);
 
     useEffect(() => {
@@ -100,6 +100,8 @@ function Header() {
             setIsLogin(true)
         }
     },[])
+
+    console.log(success)
 
 
     return (
@@ -125,7 +127,7 @@ function Header() {
                     <Link to='#'>
                         <UserWrap>
                             <UserIcon src={userIcon}/>
-                            <UserText>마이페이지</UserText>
+                            <UserText>로그아웃</UserText>
                         </UserWrap>
                     </Link>
                 ) : 

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Mainpage from './Mainpage';
 import { Link, useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 
 const FormWrap = styled.form`
     display: flex;
@@ -40,19 +41,22 @@ const LoginBtn = styled.button`
 const Errormsg = styled.div`
 `
 
+// 로그인 가능 정보
+
+// buyer1, buyer2, buyer3
+// hodu0910
+// BUYER
+
+
 function Loginpage() {
     const [userId, setUserId] = useState('');
     const [userPwd, setUserPwd] = useState('');
-    const [userType, setUserType] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
+    const navigate = useNavigate();
+
     const onLogin = () => {
-
-        // buyer1, buyer2, buyer3
-        // hodu0910
-        // BUYER
-
         axios({
             method: 'post',
             url: 'https://openmarket.weniv.co.kr/accounts/login/',
@@ -92,9 +96,7 @@ function Loginpage() {
     return(
         <>
         {success ? (
-            <Link to={`/openmarket`}>
-                <Mainpage />
-            </Link>
+            navigate(`/openmarket`)
         ) : (
             <FormWrap onSubmit={handleSubmit}>
                 <p>{errMsg}</p>
@@ -109,14 +111,11 @@ function Loginpage() {
                     placeholder='비밀번호' 
                     onChange={(e) => {setUserPwd(e.target.value);}} 
                 />
-                {/* <Type
-                    type='text'
-                    placeholder='타입'
-                    required
-                    onChange={(e) => {setUserType(e.target.value);}} /> */}
+
                 <LoginBtn type='submit'>로그인</LoginBtn>
             </FormWrap>
         )}
+        <Header success={success}/>
         </>
     )
 }
