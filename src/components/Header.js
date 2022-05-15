@@ -90,7 +90,7 @@ const UserIcon = styled(CartIcon)`
 `
 const UserText = styled(CartText)``
 
-function Header({ success }) {
+function Header() {
     const [isLogin, setIsLogin] = useState(false);
 
     useEffect(() => {
@@ -100,9 +100,6 @@ function Header({ success }) {
             setIsLogin(true)
         }
     },[])
-
-    console.log(success)
-
 
     return (
         <Main>

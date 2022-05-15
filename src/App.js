@@ -15,7 +15,6 @@ function App() {
         <Route path='/cart' element={<Cartpage />} />
       </Routes>
     </BrowserRouter>
-    // <Login></Login>
   );
 }
 // -webkit-clip-path: polygon(52% 0, 52% 22%, 100% 22%, 100% 100%, 0 100%, 0 0);

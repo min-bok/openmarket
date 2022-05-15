@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Mainpage from './Mainpage';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-import {API_BASE_URL, ACCESS_TOKEN} from '../setting';
+import { API_BASE_URL } from '../setting';
 
 const FormWrap = styled.form`
     display: flex;
@@ -69,10 +69,11 @@ function Loginpage() {
             ContentType: 'application/json',
         })
         .then(res => {
-            axios.defaults.headers.common['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
-            
+            // 로그인 성공 시 토큰 가져오기
+            const JWT_TOKEN = res.data.token;
+
             // 로컬스토리지에 로그인 정보 저장
-            localStorage.setItem('id', ACCESS_TOKEN);
+            localStorage.setItem('id', JWT_TOKEN);
             setSuccess(true);
         })
         .catch(err => {
@@ -115,7 +116,6 @@ function Loginpage() {
                 <LoginBtn type='submit'>로그인</LoginBtn>
             </FormWrap>
         )}
-        <Header success={success}/>
         </>
     )
 }
