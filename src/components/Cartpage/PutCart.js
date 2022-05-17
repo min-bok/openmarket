@@ -1,8 +1,5 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
-
-const Form = styled.form``
 
 const PutItem = styled.button`
     width: 200px;
@@ -16,40 +13,41 @@ const PutItem = styled.button`
     cursor: pointer;
 `
 
-function PutCart() {
-    const [getItem, setGetItem] = useState([]);
+function PutCart({ id }) {
+  const [putItem, setPutItem] = useState([]);
+  
+    const test = () => {
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", `JWT ${localStorage.getItem('id')}`);
+      myHeaders.append("Content-Type", "application/json");
 
-    useEffect(() => {
-        var myHeaders = new Headers();
-        myHeaders.append("Authorization", `JWT ${localStorage.getItem('id')}`);
-        myHeaders.append("Content-Type", "application/json");
+      var raw = JSON.stringify({
+        "product_id": id,
+        "quantity": 0,
+        "check": false
+      });
 
-        var raw = JSON.stringify({
-          "product_id": 3,
-          "quantity": 2,
-          "check": false
-        });
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
 
-        var requestOptions = {
-          method: 'POST',
-          headers: myHeaders,
-          body: raw,
-          redirect: 'follow'
-        };
+      fetch("https://openmarket.weniv.co.kr/cart/", requestOptions)
+        .then(response => response.text())
+        .then(res => 
+          setPutItem(JSON.parse(res)),
+          alert('상품이 장바구니에 담겼습니다.')
+        )
+        .catch(error => console.log('error', error));
+    }
 
-        fetch("https://openmarket.weniv.co.kr/cart/", requestOptions)
-          .then(response => response.text())
-          .then(res => setGetItem(JSON.parse(res)))
-          .catch(error => console.log('error', error));
-    },[])
-
-    console.log(getItem)
+    console.log(putItem)
 
 
     return(
-        <Form>
-            <PutItem>장바구니</PutItem>
-        </Form>
+          <PutItem onClick={test}>장바구니</PutItem>
     )
 }
 

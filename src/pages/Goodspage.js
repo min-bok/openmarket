@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import Header from '../components/Header'
+import Header from '../components/Header';
+import PutCart from '../components/Cartpage/PutCart';
 
 const Cont = styled.div`
   padding-top: 5.625rem;
@@ -19,12 +20,25 @@ const ShippingWrap = styled.div``
 const ShippingMethod = styled.p``
 const ShippingPrice = styled.p``
 
+// const PutItem = styled.button`
+//     width: 200px;
+//     height: 60px;
+//     border-radius: 5px;
+//     border: none;
+//     background-color: red;
+//     font-size: 18px;
+//     font-weight: 700;
+//     color: #fff;
+//     cursor: pointer;
+// `
+
 function Goodspage() {
     document.title = 'HODU | 제품 상세';
 
     let id= useParams().id;
-    const url = `https://openmarket.weniv.co.kr/products?product_id=${id}`;
+    const url = `https://openmarket.weniv.co.kr/products`;
 
+    // 상품 정보 출력
     const [goods, setGoods] = useState([]);
 
     useEffect(() => {
@@ -59,6 +73,7 @@ function Goodspage() {
               <ShippingPrice>{goods.shipping_fee}</ShippingPrice>
             </ShippingWrap>
           </Cont>
+          <PutCart id={id} />
         </>
     )
 }

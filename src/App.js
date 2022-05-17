@@ -4,7 +4,6 @@ import Mainpage from "./pages/Mainpage";
 import Goodspage from './pages/Goodspage';
 import Loginpage from './pages/Loginpage';
 import Cartpage from './pages/Cartpage';
-import Counter from './components/Cartpage/Counter';
 import PutCart from './components/Cartpage/PutCart';
 
 function App() {
@@ -18,8 +17,6 @@ function App() {
         <Route path='/cart' element={<Cartpage />} />
       </Routes>
     </BrowserRouter>
-    <Counter></Counter>
-    <PutCart></PutCart>
     </>
   );
 }

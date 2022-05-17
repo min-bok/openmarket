@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import PutCart from '../Cartpage/PutCart';
 
 const Cont = styled.div`
     display: flex;
@@ -60,7 +61,7 @@ function Products() {
                     </Cont>
                 </Link>
             ))}
-
+            <PutCart product={product}></PutCart>
         </>
     )
 }
