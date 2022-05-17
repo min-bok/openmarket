@@ -1,25 +1,34 @@
-import { API_BASE_URL, ACCESS_TOKEN } from '../setting'
-import axios from 'axios';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 function Cartpage() {
-    axios({
-        url: '/cart/',
-        baseURL: API_BASE_URL,
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('id')}`
-        },
-        ContentType: 'application/json'
-    })
-    .then(function (res) {
-        console.log(res);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    const [item, setItem] = useState([]);
+    const arr = [];
+
+    // GET API - POSTMAN
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `JWT ${localStorage.getItem('id')}`);
+
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+    useEffect(() => {
+        fetch("https://openmarket.weniv.co.kr/cart/", requestOptions)
+          .then(response => response.text())
+          .then(res => 
+            setItem(JSON.parse(res))
+          )
+          .catch(error => console.log('error', error));
+    },[])
+
+    console.log(item.results)
 
     return(
         <>
-        <h1>여기는 장바구니</h1>
+            <h1>장바구니</h1>
         </>
     )
 }

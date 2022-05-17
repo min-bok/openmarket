@@ -71,6 +71,7 @@ function Loginpage() {
         .then(res => {
             // 로그인 성공 시 토큰 가져오기
             const JWT_TOKEN = res.data.token;
+            console.log(JWT_TOKEN)
 
             // 로컬스토리지에 로그인 정보 저장
             localStorage.setItem('id', JWT_TOKEN);
