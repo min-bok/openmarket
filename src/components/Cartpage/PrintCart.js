@@ -4,6 +4,7 @@ import axios from 'axios';
 import Counter from './Counter';
 import { HiOutlineMinusSm } from "react-icons/hi";  // 마이너스 아이콘
 import { HiOutlinePlusSm } from "react-icons/hi";  // 플러스 아이콘
+import DeleteCart from './DeleteCart';
 
 const Cont = styled.div`
   position: relative;
@@ -179,6 +180,7 @@ function Cartpage() {
             <P fontSize={'18px'} fontWeight={700} color={'#EB5757'}>17,500원</P>
             <Btn>주문하기</Btn>
           </OrderWrap>
+          <DeleteCart />
         </Cont>
 
         <TotalWrap>
