@@ -81,8 +81,7 @@ function Goodspage({ count }) {
               <Title>{goods.product_name}</Title>
               <Price>{goods.price}</Price>
               <Shipping>{goods.shipping_method} / {goods.shipping_fee}</Shipping>
-              <Counter price={goods.price}/>
-              <AddCart id={id}/>
+              <AddCart id={id} price={goods.price} />
             </RightSideWrap>
         </Wrap>
       </>

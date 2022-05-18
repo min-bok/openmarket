@@ -46,7 +46,7 @@ const Checkbox = styled.input`
   /* display: none; */
 `
 
-const Th = styled.p`
+const P = styled.p`
   font-size: 18px;
   font-weight: 400;
   color: #000;
@@ -62,9 +62,9 @@ function Cartpage() {
             <TabTitle>
                 {/* <Label for='check'></Label> */}
                 <Checkbox type={'checkbox'} id='check' />
-                <Th>상품정보</Th>
-                <Th>수량</Th>
-                <Th>상품금액</Th>
+                <P>상품정보</P>
+                <P>수량</P>
+                <P>상품금액</P>
             </TabTitle>
         </Wrap>
         <PrintCart />
