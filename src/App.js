@@ -4,9 +4,11 @@ import Mainpage from "./pages/Mainpage";
 import Goodspage from './pages/Goodspage';
 import Loginpage from './pages/Loginpage';
 import Cartpage from './pages/Cartpage';
+import DeleteCart from './components/Cartpage/DeleteCart';
 
 function App() {
   return (
+    <>
     <BrowserRouter>
       <Routes>
         <Route path='/openmarket' element={<Mainpage />} />
@@ -15,7 +17,8 @@ function App() {
         <Route path='/cart' element={<Cartpage />} />
       </Routes>
     </BrowserRouter>
-    // <Login></Login>
+    {/* <DeleteCart></DeleteCart> */}
+    </>
   );
 }
 // -webkit-clip-path: polygon(52% 0, 52% 22%, 100% 22%, 100% 100%, 0 100%, 0 0);

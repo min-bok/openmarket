@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Mainpage from './Mainpage';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-import {API_BASE_URL, ACCESS_TOKEN} from '../setting';
+import { API_BASE_URL } from '../setting';
 
 const FormWrap = styled.form`
     display: flex;
@@ -12,30 +12,24 @@ const FormWrap = styled.form`
 `
 
 const ID = styled.input`
-    width: 480px;
-    height: 60px;
-    border-radius: 0px;
+    width: 384px;
+    height: 53px;
+    border: none;
+    border-radius: 50px;
+    text-indent: 30px;
+    box-shadow: inset 4px 6px 4px rgba(0, 0, 0, 0.25);
 `
 
-const PW = styled.input`
-    width: 480px;
-    height: 60px;
-    border-radius: 0px;
-`
-
-const Type = styled.input`
-    width: 480px;
-    height: 60px;
-    border-radius: 0px;
+const PW = styled(ID)`
 `
 
 const LoginBtn = styled.button`
-    width: 480px;
-    height: 60px;
-    border-radius: 5px;
-    background: #21BF48;
+    height: 53px;
+    width: 384px;
     border: none;
-    color: #FFF;
+    border-radius: 50px;
+    background-color: beige;
+    box-shadow: 4px 6px 4px 0px #00000040;
     cursor: pointer;
 `
 
@@ -69,10 +63,12 @@ function Loginpage() {
             ContentType: 'application/json',
         })
         .then(res => {
-            axios.defaults.headers.common['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
-            
+            // 로그인 성공 시 토큰 가져오기
+            const JWT_TOKEN = res.data.token;
+            console.log(JWT_TOKEN)
+
             // 로컬스토리지에 로그인 정보 저장
-            localStorage.setItem('id', ACCESS_TOKEN);
+            localStorage.setItem('id', JWT_TOKEN);
             setSuccess(true);
         })
         .catch(err => {
@@ -112,10 +108,9 @@ function Loginpage() {
                     onChange={(e) => {setUserPwd(e.target.value);}} 
                 />
 
-                <LoginBtn type='submit'>로그인</LoginBtn>
+                <LoginBtn type='submit'>LOGIN</LoginBtn>
             </FormWrap>
         )}
-        <Header success={success}/>
         </>
     )
 }
