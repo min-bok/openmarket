@@ -35,27 +35,10 @@ const Minus =  styled.button`
     border: none;
 `
 
-const TotalWrap = styled.div`
-  display: flex;
-  margin: 50px 0 0 0;
-  align-items: baseline;
-`
-
-const P = styled.p`
-    font-size: ${({ fontSize }) => fontSize};
-    font-weight: ${({ fontWeight }) => fontWeight};
-    color: ${({ color }) => color};
-`
-
-const Span = styled.span`
-    font-size: ${({ fontSize }) => fontSize};
-    font-weight: ${({ fontWeight }) => fontWeight};
-    color: ${({ color }) => color};
-` 
 // 수량 이상 못 올라가는거랑 버튼 죽이기 구현 필요함
 
-function Counter({ price }) {
-    const [count, setCount] = useState(1);
+function Counter({ props }) {
+    const [count, setCount] = useState(props);
     // const [btnState, setBtnState] = useState(false);
 
     const countUp = () => {
@@ -76,14 +59,9 @@ function Counter({ price }) {
         <>
         <Cont>
             <Minus onClick={countDown}>-</Minus>
-            <Num>{count}</Num>
+            <Num>{props}</Num>
             <Plus onClick={countUp}>+</Plus>
         </Cont>
-
-        {/* <TotalWrap>
-          <P fontSize={'18PX'} fontWeight={700} color={"#767676"}>총 수량 <Span fontSize={'18PX'} fontWeight={700} color={"#21BF48"}>{count}</Span>개</P>
-          <P fontSize={'36PX'} fontWeight={700} color={"#21BF48"}>{count * price}<Span fontSize={'18PX'} fontWeight={400} color={"#21BF48"}>원</Span></P>
-        </TotalWrap> */}
         </>
     )
 }

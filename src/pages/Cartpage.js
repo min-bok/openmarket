@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Header from '../components/Header';
 import PrintCart from '../components/Cartpage/PrintCart';
+import TotalPriceCart from '../components/Cartpage/TotalPriceCart';
+import DeleteCart from '../components/Cartpage/DeleteCart';
 
 const Cart = styled.div`
   display: flex;
@@ -8,7 +10,7 @@ const Cart = styled.div`
   align-items: center;
 `
 
-const Wrap = styled.div`
+const CartHeader = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -34,13 +36,6 @@ const TabTitle = styled.div`
   justify-content: space-between;
   padding: 0 131px 0 30px;
 `
-// const Label = styled.label`
-//   width: 20px;
-//   height: 20px;
-//  background-color: red;
-//  background-image: url('../img/check-box.svg');
-//  background-size: cover;
-// `
 
 const Checkbox = styled.input`
   /* display: none; */
@@ -57,18 +52,20 @@ function Cartpage() {
     return(
       <Cart>
       <Header />
-        <Wrap>
-            <CartTitle>장바구니</CartTitle>
-            <TabTitle>
-                {/* <Label for='check'></Label> */}
-                <Checkbox type={'checkbox'} id='check' />
-                <P>상품정보</P>
-                <P>수량</P>
-                <P>상품금액</P>
-            </TabTitle>
-        </Wrap>
-        <PrintCart />
-        </Cart>
+      <CartHeader>
+          <CartTitle>장바구니</CartTitle>
+          <TabTitle>
+              {/* <Label for='check'></Label> */}
+              <Checkbox type={'checkbox'} id='check' />
+              <P>상품정보</P>
+              <P>수량</P>
+              <P>상품금액</P>
+          </TabTitle>
+      </CartHeader>
+      <PrintCart />
+      <DeleteCart />
+      <TotalPriceCart />
+      </Cart>
     )
 }
 

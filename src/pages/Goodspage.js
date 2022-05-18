@@ -43,7 +43,7 @@ const Price = styled.p`
 `
 const Shipping = styled.p``
 
-function Goodspage({ count }) {
+function Goodspage() {
     document.title = 'HODU | 제품 상세';
 
     let id= useParams().id;

@@ -2,20 +2,28 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import PutCart from '../Cartpage/AddCart';
+
+const Wrap = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    padding: 80px 320px 102px 320px;
+    justify-content: space-between;
+`
 
 const Cont = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 30.625rem;
+    height: 490px;
+    margin: 0 0 78px 0;
 `
 
 const Img = styled.img`
-    width: 600px;
-    height: 600px;
+    width: 380px;
+    height: 380px;
     border-radius: 10px;
-    background-color: aqua;
     border: 1px solid #C4C4C4;
     margin-bottom: 0.375rem;
 `
@@ -50,7 +58,7 @@ function Products() {
     }, [])
 
     return(
-        <>
+        <Wrap>
             {product.map((product) => (
                 <Link to = {`/goods/${product.product_id}`} key={product.product_id}>
                     <Cont>
@@ -61,7 +69,7 @@ function Products() {
                     </Cont>
                 </Link>
             ))}
-        </>
+        </Wrap>
     )
 }
 

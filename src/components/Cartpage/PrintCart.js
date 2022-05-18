@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Counter from './Counter';
-import { HiOutlineMinusSm } from "react-icons/hi";  // 마이너스 아이콘
-import { HiOutlinePlusSm } from "react-icons/hi";  // 플러스 아이콘
-import DeleteCart from './DeleteCart';
+import TotalPriceCart from './TotalPriceCart';
 
 const Cont = styled.div`
   position: relative;
@@ -73,145 +71,84 @@ const Btn =  styled.button`
   margin: 26px 0 0 0;
 `
 
-const TotalWrap = styled.div`
-  display: flex;
-  width: 1280px;
-  height: 150px;
-  border-radius: 10px;
-  background-color: #F2F2F2;
-  margin: 70px 0 40px 0;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 91px 0 112px;
-`
+function GetCartItem() {
+  document.title = 'HODU | 장바구니';
+  const [getItem, setGetItem] = useState([]);
+  // const [goods, setGoods] = useState([]);
 
-const OrderBtn = styled.button`
-  width: 220px;
-  height: 68px;
-  border-radius: 5px;
-  background-color: #21BF48;
-  border: none;
-  font-size: 24px;
-  font-weight: 700;
-  color: #fff;
-`
+  useEffect(() => {
+    // 장바구니에 저장된 상품 정보 가져오기
+    axios({
+      method: 'get',
+      url: `https://openmarket.weniv.co.kr/cart/`,
+      headers: {'Authorization': `JWT ${localStorage.getItem('id')}`}
+    })
+    .then(function (res) {
+      const dataSet = res.data.results;
+      setGetItem(dataSet)
+    })
+    .catch(function (error) {
+      // 에러 핸들링
+      console.log(error);
+    })
+  },[])
+  
+  return(
+    <>
+    {getItem.map((data) => {
+      return(
+        <PrintCartItem product_id={data.product_id} quantity={data.quantity} key={data.cart_item_id} />
+      )
+    })}
+    </>
+  )
+}
 
-const ProductPrice = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
+function PrintCartItem(product_id) {
+  const [goods, setGoods] = useState([]);
 
-const Discount = styled(ProductPrice)``
-const ShippingFee = styled(ProductPrice)``
-const TotalPrice = styled(ProductPrice)``
+  useEffect(() => {
+    axios.get(`https://openmarket.weniv.co.kr/products`)
+    .then(function (res) {
+        const dataSet = res.data.results;
+        for (let i of dataSet) {
+          if(i.product_id == product_id.product_id) {
+            setGoods(i)
+          }
+        }
+        // console.log(dataSet)
+          // setGoods(dataSet)
+      })
+      .catch(function (error) {
+        // 에러 핸들링
+        console.log(error);
+      })
+      .then(function () {
+        // 항상 실행되는 영역
+      });
+    }, [])
 
-const StyledHiOutlineMinusSm = styled(HiOutlineMinusSm)`
-  width: 34px;
-  height: 34px;
-  background-color: #fff;
-  border-radius: 50%;
-  color: #c4c4c4;
-  font-size: 18px;
-`
-
-const StyledHiOutlinePlusSm = styled(HiOutlinePlusSm)`
-  width: 34px;
-  height: 34px;
-  background-color: #fff;
-  border-radius: 50%;
-  color: #c4c4c4;
-  font-size: 18px;
-`
-
-function Cartpage() {
-    document.title = 'HODU | 장바구니';
-    const [item, setItem] = useState([]);
-    const [goods, setGoods] = useState([]);
-
-    // 장바구니에 저장된 상품 목록 불러오기
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", `JWT ${localStorage.getItem('id')}`);
-
-    var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-
-    useEffect(() => {
-        fetch("https://openmarket.weniv.co.kr/cart/", requestOptions)
-          .then(response => response.text())
-          .then(res => 
-            setItem(JSON.parse(res).results)
-          )
-          .catch(error => console.log('error', error));
-    },[])
-
-    const Test = () => {
-      useEffect(() => {
-        axios.get('https://openmarket.weniv.co.kr/products')
-          .then(function (res) {
-            const productlist = res.data.results;
-          })
-          .catch(function (error) {
-            // 에러 핸들링
-            console.log(error);
-          })
-          .then(function () {
-            // 항상 실행되는 영역
-          });
-      }, [])
-    }
-
-    console.log(item)
-    
     return(
       <>
         <Cont>
           <Checkbox type={'checkbox'} />
-          <Img></Img>
+          <Img src={goods.image}></Img>
           <InfoWrap>
-            <P fontSize={'14px'} fontWeight={400} color={'#767676'}>백엔드글로벌</P>
-            <ProductName fontSize={'18px'} fontWeight={400} color={'#000'}>딥러닝 개발자 무릎 담요</ProductName>
-            <P fontSize={'16px'} fontWeight={700} color={'#000'}>17,500원</P>
-            <Shippping fontSize={'14px'} fontWeight={400} color={'#767676'}>택배배송 / 무료배송</Shippping>
+            <P fontSize={'14px'} fontWeight={400} color={'#767676'}>{goods.seller_store}</P>
+            <ProductName fontSize={'18px'} fontWeight={400} color={'#000'}>{goods.product_name}</ProductName>
+            <P fontSize={'16px'} fontWeight={700} color={'#000'}>{goods.price}원</P>
+            <Shippping fontSize={'14px'} fontWeight={400} color={'#767676'}>{goods.shipping_method} / {goods.shipping_fee}</Shippping>
           </InfoWrap>
-          <Counter></Counter>
+
+          <Counter props={product_id.quantity}></Counter>
+
           <OrderWrap>
-            <P fontSize={'18px'} fontWeight={700} color={'#EB5757'}>17,500원</P>
+            <P fontSize={'18px'} fontWeight={700} color={'#EB5757'}>{(product_id.quantity) * (goods.price)}원</P>
             <Btn>주문하기</Btn>
           </OrderWrap>
-          <DeleteCart />
         </Cont>
-
-        <TotalWrap>
-          <ProductPrice>
-            <P fontSize={'16px'} fontWeight={400} color={'#000'}>총 상품금액</P>
-            <P fontSize={'24px'} fontWeight={700} color={'#000'}>1000<Span fontSize={'16px'} fontWeight={400} color={'#000'}>원</Span></P>
-          </ProductPrice>
-
-          <StyledHiOutlineMinusSm />
-
-          <Discount>
-            <P fontSize={'16px'} fontWeight={400} color={'#000'}>상품할인</P>
-            <P fontSize={'24px'} fontWeight={700} color={'#000'}>0<Span fontSize={'16px'} fontWeight={400} color={'#000'}>원</Span></P>
-          </Discount>
-
-          <StyledHiOutlinePlusSm />
-
-          <ShippingFee>
-            <P fontSize={'16px'} fontWeight={400} color={'#000'}>배송비</P>
-            <P fontSize={'24px'} fontWeight={700} color={'#000'}>0<Span fontSize={'16px'} fontWeight={400} color={'#000'}>원</Span></P>
-          </ShippingFee>
-          <TotalPrice>
-            <P fontSize={'16px'} fontWeight={700} color={'#000'}>결제 예정 금액</P>
-            <P fontSize={'36px'} fontWeight={700} color={'#EB5757'}>46,500<Span fontSize={'18px'} fontWeight={400} color={'#EB5757'}>원</Span></P>
-          </TotalPrice>
-        </TotalWrap>
-        <OrderBtn>주문하기</OrderBtn>
       </>
     )
 }
 
-export default Cartpage;
+export default GetCartItem;
