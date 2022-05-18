@@ -25,7 +25,7 @@ function DeleteCart() {
 }
 
     return(
-        <HiX onClick={AllDelete}></HiX>
+        <p onClick={AllDelete}>전체삭제</p>
     )
 }
 

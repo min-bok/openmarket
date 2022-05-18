@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';;
 
@@ -96,33 +97,53 @@ function AddCart({ id, price }) {
   }
 
   const handletPutCart = () => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", `JWT ${localStorage.getItem('id')}`);
-    myHeaders.append("Content-Type", "application/json");
-    
-    var raw = JSON.stringify({
-      "product_id": id,
-      "quantity": count,  // 이거 동적으로 바꾸기
-      "check": false
-    });
-    
-    var requestOptions = {
+    axios({
       method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-      };
+      url: `https://openmarket.weniv.co.kr/cart/`,
+      data: {
+        "product_id": id,
+        "quantity": count,
+        "check": false
+      },
+      headers: {'Authorization': `JWT ${localStorage.getItem('id')}`}
+    })
+    .then(function (response) {
+      setPutItem(response.data)
+    })
+    .catch(function (error) {
+      alert(error.response.data.FAIL_message)
+    })
 
-      fetch("https://openmarket.weniv.co.kr/cart/", requestOptions)
-        .then(response => response.text())
-        .then(res => 
-          setPutItem(JSON.parse(res)),
-          alert('상품이 장바구니에 담겼습니다.')
-        )
-        .catch(error => console.log('error', error));
+    console.log(putItem && putItem)
+  // }
+    // var myHeaders = new Headers();
+    // myHeaders.append("Authorization", `JWT ${localStorage.getItem('id')}`);
+    // myHeaders.append("Content-Type", "application/json");
+    
+    // var raw = JSON.stringify({
+    //   "product_id": id,
+    //   "quantity": count,  // 이거 동적으로 바꾸기
+    //   "check": false
+    // });
+    
+    // var requestOptions = {
+    //   method: 'POST',
+    //     headers: myHeaders,
+    //     body: raw,
+    //     redirect: 'follow'
+    //   };
+
+    //   fetch("https://openmarket.weniv.co.kr/cart/", requestOptions)
+    //     .then(response => response.text())
+    //     .then(res => 
+    //       setPutItem(JSON.parse(res))
+    //     )
+    //     .catch(error => console.log(error.status));
+    // }
+
+    // if(putItem.status == 406) {
+    //   alert('현재 재고보다 더 많은 수량을 담을 수 없습니다.')
     }
-
-    console.log(putItem)
 
     return(
       <>

@@ -163,6 +163,8 @@ function Cartpage() {
           });
       }, [])
     }
+
+    console.log(item)
     
     return(
       <>
