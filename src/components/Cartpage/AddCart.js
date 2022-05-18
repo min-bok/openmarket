@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components';;
 
 const PutItem = styled.button`
+    position: absolute;
     width: 200px;
     height: 60px;
     border-radius: 5px;
@@ -11,6 +12,7 @@ const PutItem = styled.button`
     font-weight: 700;
     color: #fff;
     cursor: pointer;
+    bottom: 0;
 `
 
 function PutCart({ id }) {
@@ -44,7 +46,6 @@ function PutCart({ id }) {
     }
 
     console.log(putItem)
-
 
     return(
           <PutItem onClick={test}>장바구니</PutItem>

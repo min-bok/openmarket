@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import PutCart from '../Cartpage/PutCart';
+import PutCart from '../Cartpage/AddCart';
 
 const Cont = styled.div`
     display: flex;
@@ -12,8 +12,8 @@ const Cont = styled.div`
 `
 
 const Img = styled.img`
-    width: 23.75rem;
-    height: 23.75rem;
+    width: 600px;
+    height: 600px;
     border-radius: 10px;
     background-color: aqua;
     border: 1px solid #C4C4C4;
@@ -61,7 +61,6 @@ function Products() {
                     </Cont>
                 </Link>
             ))}
-            <PutCart product={product}></PutCart>
         </>
     )
 }

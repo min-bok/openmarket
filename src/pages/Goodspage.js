@@ -4,35 +4,46 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Header from '../components/Header';
-import PutCart from '../components/Cartpage/PutCart';
+import AddCart from '../components/Cartpage/AddCart';
+import Cartpage from './Cartpage';
+import Counter from '../components/Cartpage/Counter';
+import { count } from '../components/Cartpage/Counter';
 
-const Cont = styled.div`
-  padding-top: 5.625rem;
+const Wrap = styled.div`
+  display: flex;
+  height: auto;
+  justify-content: center;
+  padding: 170px 0 0 0;
 `
 
-const Img = styled.img``
+const Img = styled.img`
+  width: 600px;
+  height: 600px;
+`
 
-const Title = styled.p``
-const Store = styled.p``
-const Price = styled.p``
+const RightSideWrap = styled.div`
+  position: relative;
+  margin-left: 50px;
+`
 
-const ShippingWrap = styled.div``
-const ShippingMethod = styled.p``
-const ShippingPrice = styled.p``
+const Store = styled.p`
+  font-size: 18px;
+  font-weight: 400;
+  color: #767676;
+`
+const Title = styled.p`
+  font-size: 36px;
+  font-weight: 400;
+  color: #000;
+  margin: 16px 0 20px 0;
+`
+const Price = styled.p`
+  font-size: 36px;
+  font-weight: 700;
+`
+const Shipping = styled.p``
 
-// const PutItem = styled.button`
-//     width: 200px;
-//     height: 60px;
-//     border-radius: 5px;
-//     border: none;
-//     background-color: red;
-//     font-size: 18px;
-//     font-weight: 700;
-//     color: #fff;
-//     cursor: pointer;
-// `
-
-function Goodspage() {
+function Goodspage({ count }) {
     document.title = 'HODU | 제품 상세';
 
     let id= useParams().id;
@@ -61,20 +72,20 @@ function Goodspage() {
     }, [])
 
     return(
-        <>
-          <Header />
-          <Cont key={goods.product_id}>
+      <>
+        <Header />
+        <Wrap>
             <Img src={goods.image}></Img>
-            <Store>{goods.seller_store}</Store>
-            <Title>{goods.product_name}</Title>
-            <Price>{goods.price}</Price>
-            <ShippingWrap>
-              <ShippingMethod>{goods.shipping_method}</ShippingMethod>
-              <ShippingPrice>{goods.shipping_fee}</ShippingPrice>
-            </ShippingWrap>
-          </Cont>
-          <PutCart id={id} />
-        </>
+            <RightSideWrap>
+              <Store>{goods.seller_store}</Store>
+              <Title>{goods.product_name}</Title>
+              <Price>{goods.price}</Price>
+              <Shipping>{goods.shipping_method} / {goods.shipping_fee}</Shipping>
+              <Counter price={goods.price}/>
+              <AddCart id={id}/>
+            </RightSideWrap>
+        </Wrap>
+      </>
     )
 }
 
