@@ -21,7 +21,7 @@ function DeleteCart() {
   .then(function (response) {
     // 성공 핸들링
     if(response.status == 204) {
-      alert('장바구니의 모든 상품이 삭제되었습니다.')
+      window.confirm('장바구니의 모든 상품을 삭제하시겠습니까?')
       window.location.reload();
     }
   })

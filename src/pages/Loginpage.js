@@ -5,10 +5,19 @@ import Mainpage from './Mainpage';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import { API_BASE_URL } from '../setting';
+import LogoImg from '../img/Logo-hodu.svg';
+
+const Logo = styled.img`
+    width: 238px;
+    margin: 0 0 75px 0;
+`
 
 const FormWrap = styled.form`
     display: flex;
+    height: 100vh;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `
 
 const ID = styled.input`
@@ -28,9 +37,12 @@ const LoginBtn = styled.button`
     width: 384px;
     border: none;
     border-radius: 50px;
-    background-color: beige;
+    background-color: #21BF48;
     box-shadow: 4px 6px 4px 0px #00000040;
     cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
 `
 
 const Errormsg = styled.div`
@@ -94,7 +106,11 @@ function Loginpage() {
         {success ? (
             navigate(`/openmarket`)
         ) : (
+            <>
             <FormWrap onSubmit={handleSubmit}>
+                <Link to='/openmarket'>
+                    <Logo src={LogoImg} />
+                </Link>
                 <p>{errMsg}</p>
                 <ID 
                     type='text' 
@@ -110,6 +126,7 @@ function Loginpage() {
 
                 <LoginBtn type='submit'>LOGIN</LoginBtn>
             </FormWrap>
+            </>
         )}
         </>
     )
