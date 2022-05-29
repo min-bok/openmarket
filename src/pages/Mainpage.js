@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import Slider from "../components/Mainpage/Slider";
 import Products from "../components/Mainpage/Products";
+import Footer from "../components/Footer";
 
 function Mainpage() {
     return(
@@ -8,6 +9,7 @@ function Mainpage() {
             <Header />
             <Slider />
             <Products />
+            <Footer />
         </>
     )
 }
