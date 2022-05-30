@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { HiOutlineMinusSm } from "react-icons/hi";  // 마이너스 아이콘
 import { HiOutlinePlusSm } from "react-icons/hi";  // 플러스 아이콘
+import { useEffect, useState } from 'react';
 
 const TotalWrap = styled.div`
   display: flex;
@@ -66,13 +67,16 @@ const StyledHiOutlinePlusSm = styled(HiOutlinePlusSm)`
   font-size: 18px;
 `
 
-function TotalPriceCart({price}) {
+function TotalPriceCart(props) {
+  const price = Number(props.price);
+  const shipping_fee = props.shipping_fee
+
     return(
         <>
         <TotalWrap>
             <ProductPrice>
               <P fontSize={'16px'} fontWeight={400} color={'#000'}>총 상품금액</P>
-              <P fontSize={'24px'} fontWeight={700} color={'#000'}>1000<Span fontSize={'16px'} fontWeight={400} color={'#000'}>원</Span></P>
+              <P fontSize={'24px'} fontWeight={700} color={'#000'}>{price}<Span fontSize={'16px'} fontWeight={400} color={'#000'}>원</Span></P>
             </ProductPrice>
 
             <StyledHiOutlineMinusSm />
@@ -86,11 +90,11 @@ function TotalPriceCart({price}) {
 
             <ShippingFee>
               <P fontSize={'16px'} fontWeight={400} color={'#000'}>배송비</P>
-              <P fontSize={'24px'} fontWeight={700} color={'#000'}>0<Span fontSize={'16px'} fontWeight={400} color={'#000'}>원</Span></P>
+              <P fontSize={'24px'} fontWeight={700} color={'#000'}>{shipping_fee}<Span fontSize={'16px'} fontWeight={400} color={'#000'}>원</Span></P>
             </ShippingFee>
             <TotalPrice>
               <P fontSize={'16px'} fontWeight={700} color={'#000'}>결제 예정 금액</P>
-              <P fontSize={'36px'} fontWeight={700} color={'#EB5757'}>46,500<Span fontSize={'18px'} fontWeight={400} color={'#EB5757'}>원</Span></P>
+              <P fontSize={'36px'} fontWeight={700} color={'#EB5757'}>{price + shipping_fee}<Span fontSize={'18px'} fontWeight={400} color={'#EB5757'}>원</Span></P>
             </TotalPrice>
             </TotalWrap>
             <OrderBtn>주문하기</OrderBtn>

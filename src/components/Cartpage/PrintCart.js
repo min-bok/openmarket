@@ -116,6 +116,8 @@ function PrintCartItem(product_id) {
             setGoods(i)
           }
         }
+        // console.log(dataSet)
+          // setGoods(dataSet)
       })
       .catch(function (error) {
         // 에러 핸들링
@@ -145,6 +147,8 @@ function PrintCartItem(product_id) {
             <Btn>주문하기</Btn>
           </OrderWrap>
         </Cont>
+
+        <TotalPriceCart price={(product_id.quantity) * (goods.price)} shipping_fee={goods.shipping_fee}/>
       </>
     )
 }
