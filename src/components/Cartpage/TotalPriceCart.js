@@ -66,7 +66,7 @@ const StyledHiOutlinePlusSm = styled(HiOutlinePlusSm)`
   font-size: 18px;
 `
 
-function TotalPriceCart() {
+function TotalPriceCart({price}) {
     return(
         <>
         <TotalWrap>

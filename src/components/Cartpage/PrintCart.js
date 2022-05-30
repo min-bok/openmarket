@@ -116,8 +116,6 @@ function PrintCartItem(product_id) {
             setGoods(i)
           }
         }
-        // console.log(dataSet)
-          // setGoods(dataSet)
       })
       .catch(function (error) {
         // 에러 핸들링
