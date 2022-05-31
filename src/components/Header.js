@@ -101,6 +101,12 @@ function Header() {
         }
     },[])
 
+    const logout = () => {
+        localStorage.removeItem('id');
+        window.confirm('로그아웃 하시겠습니까?')
+        window.location.reload();
+    }
+
     return (
         <Main>
             <Link to ={`/openmarket`}>
@@ -124,7 +130,7 @@ function Header() {
                     <Link to='#'>
                         <UserWrap>
                             <UserIcon src={userIcon}/>
-                            <UserText>로그아웃</UserText>
+                            <UserText onClick={logout}>로그아웃</UserText>
                         </UserWrap>
                     </Link>
                 ) : 

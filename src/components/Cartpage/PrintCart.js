@@ -147,6 +147,8 @@ function PrintCartItem(product_id) {
             <Btn>주문하기</Btn>
           </OrderWrap>
         </Cont>
+
+        <TotalPriceCart price={(product_id.quantity) * (goods.price)} shipping_fee={goods.shipping_fee}/>
       </>
     )
 }

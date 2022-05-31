@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';;
+import styled from 'styled-components';
 
 const PutItem = styled.button`
     position: absolute;
@@ -108,6 +108,7 @@ function AddCart({ id, price }) {
       headers: {'Authorization': `JWT ${localStorage.getItem('id')}`}
     })
     .then(function (response) {
+      // console.log(response.data)
       setPutItem(response.data)
       alert('상품이 장바구니에 담겼습니다')
     })
