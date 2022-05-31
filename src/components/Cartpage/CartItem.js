@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Counter from './Counter';
+import { useState, useEffect } from 'react';
 
 const Cont = styled.div`
   position: relative;

@@ -64,6 +64,7 @@ function Cartpage() {
       </CartHeader>
       <PrintCart />
       <DeleteCart />
+      <TotalPriceCart />
       </Cart>
     )
 }

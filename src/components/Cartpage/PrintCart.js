@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CartItem from './CartItem';
-import TotalPriceCart from './TotalPriceCart';
 
 function GetCartItem() {
   document.title = 'HODU | 장바구니';
@@ -60,7 +59,6 @@ function PrintCartItem(product_id) {
     return(
       <>
         <CartItem goods={goods} product_id={product_id}/>
-        <TotalPriceCart />
       </>
     )
 }
