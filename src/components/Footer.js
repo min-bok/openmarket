@@ -16,6 +16,13 @@ const UpperSide = styled.div`
     border-bottom: 1px solid #C4C4C4;
 `
 
+const P = styled.p`
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    padding: 0 14px 0 14px;
+`
+
 const TextWrap = styled.div`
     display: flex;
     width: 700px;
@@ -23,22 +30,16 @@ const TextWrap = styled.div`
     justify-content: space-between;
 
     P{
+        border-right: 1px solid #000;
+        cursor: pointer;
+
         &:last-child {
             border: none;
         }
-    }
-`
 
-const P = styled.p`
-    font-size: 14px;
-    font-weight: 400;
-    color: #000;
-    padding: 0 14px 0 14px;
-    border-right: 1px solid #000;
-    cursor: pointer;
-
-    :hover {
-        font-weight: 700;
+        :hover {
+            font-weight: 700;
+        }
     }
 `
 
@@ -59,6 +60,24 @@ const Facebook = styled(snsImg)`
 `
 const Youtube = styled(snsImg)``
 
+// Lower Side
+
+const LowerSide = styled.div`
+    width: 100%;
+    padding-top: 1.875rem;
+
+    P {
+        &:first-child {
+            font-weight: 700;
+        }
+
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.5rem;
+        color: #767676;
+    }
+`
+
 function Footer() {
     return(
         <Cont>
@@ -78,6 +97,13 @@ function Footer() {
                     <Youtube />
                 </SnsWrap>
             </UpperSide>
+
+            <LowerSide>
+                <P>(주)HODU SHOP</P>
+                <P>제주특별자치도 제주시 동광고 137 제주코딩베이스캠프</P>
+                <P>사업자 번호 : 000-0000-0000 | 통신판매업</P>
+                <P>대표 : 김호두</P>
+            </LowerSide>
         </Cont>
     )
 }

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CartItem from './CartItem';
+import TotalPriceCart from './TotalPriceCart';
 
 function GetCartItem() {
   document.title = 'HODU | 장바구니';
   const [getItem, setGetItem] = useState([]);
-  // const [goods, setGoods] = useState([]);
 
   useEffect(() => {
     // 장바구니에 저장된 상품 정보 가져오기
@@ -60,6 +60,7 @@ function PrintCartItem(product_id) {
     return(
       <>
         <CartItem goods={goods} product_id={product_id}/>
+        <TotalPriceCart />
       </>
     )
 }

@@ -68,23 +68,23 @@ const Btn =  styled.button`
   margin: 26px 0 0 0;
 `
 
-function CartItem(goods, product_id) {
+function CartItem(props) {
     return(
         <>
         <Cont>
           <Checkbox type={'checkbox'} />
-          <Img src={goods.goods.image}></Img>
+          <Img src={props.goods.image}></Img>
           <InfoWrap>
-            <P fontSize={'14px'} fontWeight={400} color={'#767676'}>{goods.goods.seller_store}</P>
-            <ProductName fontSize={'18px'} fontWeight={400} color={'#000'}>{goods.goods.product_name}</ProductName>
-            <P fontSize={'16px'} fontWeight={700} color={'#000'}>{goods.goods.price}원</P>
-            <Shippping fontSize={'14px'} fontWeight={400} color={'#767676'}>{goods.goods.shipping_method} / {goods.goods.shipping_fee}</Shippping>
+            <P fontSize={'14px'} fontWeight={400} color={'#767676'}>{props.goods.seller_store}</P>
+            <ProductName fontSize={'18px'} fontWeight={400} color={'#000'}>{props.goods.product_name}</ProductName>
+            <P fontSize={'16px'} fontWeight={700} color={'#000'}>{props.goods.price}원</P>
+            <Shippping fontSize={'14px'} fontWeight={400} color={'#767676'}>{props.goods.shipping_method} / {props.goods.shipping_fee}</Shippping>
           </InfoWrap>
 
-          <Counter props={goods.product_id.quantity}></Counter>
+          <Counter props={props.product_id.quantity}></Counter>
 
           <OrderWrap>
-            <P fontSize={'18px'} fontWeight={700} color={'#EB5757'}>{(goods.product_id.quantity) * (goods.goods.price)}원</P>
+            <P fontSize={'18px'} fontWeight={700} color={'#EB5757'}>{(props.product_id.quantity) * (props.goods.price)}원</P>
             <Btn>주문하기</Btn>
           </OrderWrap>
         </Cont>
