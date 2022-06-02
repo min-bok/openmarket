@@ -3,7 +3,6 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Mainpage from "./pages/Mainpage";
 import Goodspage from './pages/Goodspage';
 import Loginpage from './pages/Loginpage';
-import Cartpage from './pages/Cartpage';
 
 function App() {
   return (
@@ -13,7 +12,6 @@ function App() {
         <Route path='/openmarket' element={<Mainpage />} />
         <Route path='/goods/:id' element={<Goodspage />} />
         <Route path='/openmarket/login' element={<Loginpage />} />
-        <Route path='/cart' element={<Cartpage />} />
       </Routes>
     </BrowserRouter>
     </>
