@@ -25,8 +25,11 @@ const Img = styled.img`
   margin: 0 50px 0  40px;
 `
 
+// 추후 말 줄임표 구현할 것
 const InfoWrap = styled.div`
-  margin: 0 250px 0 0;
+  width: 300px;
+  margin: 0 150px 0 0;
+  /* background-color: antiquewhite; */
 `
 
 const P = styled.p`

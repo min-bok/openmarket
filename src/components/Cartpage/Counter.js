@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import AddCart from '../Cartpage/AddCart'
 
 const Cont =  styled.div`
     display: flex;

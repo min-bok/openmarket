@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { FiInstagram } from "react-icons/fi";
+import { FiFacebook } from "react-icons/fi";
+import { FiYoutube } from "react-icons/fi";
 
 const Cont = styled.div`
     width: 100%;
@@ -43,22 +46,16 @@ const TextWrap = styled.div`
     }
 `
 
-const SnsWrap = styled.div``
-
-const snsImg = styled.img`
-    width: 32px;
-    height: 32px;
-    background-color: pink;
-    border-radius: 50%;
+const SnsWrap = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 124px;
     cursor: pointer;
-`
 
-// react icon 삽입하기
-const Insta = styled(snsImg)``
-const Facebook = styled(snsImg)`
-    margin: 0 14px 0 14px;
+    * {
+        font-size: 24px;
+    }
 `
-const Youtube = styled(snsImg)``
 
 // Lower Side
 
@@ -92,9 +89,9 @@ function Footer() {
                 </TextWrap>
 
                 <SnsWrap>
-                    <Insta />
-                    <Facebook />
-                    <Youtube />
+                    <FiInstagram />
+                    <FiFacebook />
+                    <FiYoutube />
                 </SnsWrap>
             </UpperSide>
 
