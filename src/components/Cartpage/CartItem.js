@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Counter from './Counter';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Cont = styled.div`
   position: relative;
@@ -70,14 +71,17 @@ const Btn =  styled.button`
   font-size: 16px;
   font-weight: 500;
   margin: 26px 0 0 0;
+  cursor: pointer;
 `
 
 function CartItem(props) {
+    console.log(props)
+
     return(
         <>
         <Cont>
           <Checkbox type={'checkbox'} />
-          <Img src={props.goods.image}></Img>
+          <Img src={props.goods.image} />
           <InfoWrap>
             <P fontSize={'14px'} fontWeight={400} color={'#767676'}>{props.goods.seller_store}</P>
             <ProductName fontSize={'18px'} fontWeight={400} color={'#000'}>{props.goods.product_name}</ProductName>

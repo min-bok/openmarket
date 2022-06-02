@@ -48,7 +48,6 @@ const P = styled.p`
 `
 
 function Cartpage() {
-    
     return(
       <Cart>
       <Header />

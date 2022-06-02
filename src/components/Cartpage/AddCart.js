@@ -108,7 +108,6 @@ function AddCart({ id, price }) {
       headers: {'Authorization': `JWT ${localStorage.getItem('id')}`}
     })
     .then(function (response) {
-      // console.log(response.data)
       setPutItem(response.data)
       alert('상품이 장바구니에 담겼습니다')
     })

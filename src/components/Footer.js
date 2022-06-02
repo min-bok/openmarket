@@ -50,10 +50,10 @@ const SnsWrap = styled.div`
     display: flex;
     justify-content: space-between;
     width: 124px;
-    cursor: pointer;
-
+    
     * {
         font-size: 24px;
+        cursor: pointer;
     }
 `
 

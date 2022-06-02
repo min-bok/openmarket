@@ -5,9 +5,6 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Header from '../components/Header';
 import AddCart from '../components/Cartpage/AddCart';
-import Cartpage from './Cartpage';
-import Counter from '../components/Cartpage/Counter';
-import { count } from '../components/Cartpage/Counter';
 
 const Wrap = styled.div`
   display: flex;
@@ -87,6 +84,5 @@ function Goodspage() {
       </>
     )
 }
-
 
 export default Goodspage;
