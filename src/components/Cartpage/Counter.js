@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import AddCart from '../Cartpage/AddCart'
+import axios from 'axios';
 
 const Cont =  styled.div`
     display: flex;
@@ -17,7 +17,9 @@ const Plus =  styled.button`
     font-size: 24px;
     color: #C4C4C4;
     border: none;
+    cursor: pointer;
 `
+
 const Num =  styled.p`
     width: 100%;
     background-color: #FFFFFF;
@@ -27,19 +29,20 @@ const Num =  styled.p`
     border-bottom: none;
     padding-top: 0.813rem;
 `
+
 const Minus =  styled.button`
     width: 100%;
     background-color: #FFFFFF;
     font-size: 24px;
     color: #C4C4C4;
     border: none;
+    cursor: pointer;
 `
 
 // 수량 이상 못 올라가는거랑 버튼 죽이기 구현 필요함
 
 function Counter({ props }) {
     const [count, setCount] = useState(props);
-    // const [btnState, setBtnState] = useState(false);
 
     const countUp = () => {
         setCount(count + 1)
@@ -55,6 +58,7 @@ function Counter({ props }) {
         }
     }
     
+    // 현재 장바구니 수량 변경 금지
     return(
         <>
         <Cont>

@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { FiInstagram } from "react-icons/fi";
+import { FiFacebook } from "react-icons/fi";
+import { FiYoutube } from "react-icons/fi";
 
 const Cont = styled.div`
     width: 100%;
@@ -16,6 +19,13 @@ const UpperSide = styled.div`
     border-bottom: 1px solid #C4C4C4;
 `
 
+const P = styled.p`
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    padding: 0 14px 0 14px;
+`
+
 const TextWrap = styled.div`
     display: flex;
     width: 700px;
@@ -23,41 +33,47 @@ const TextWrap = styled.div`
     justify-content: space-between;
 
     P{
+        border-right: 1px solid #000;
+        cursor: pointer;
+
         &:last-child {
             border: none;
+        }
+
+        :hover {
+            font-weight: 700;
         }
     }
 `
 
-const P = styled.p`
-    font-size: 14px;
-    font-weight: 400;
-    color: #000;
-    padding: 0 14px 0 14px;
-    border-right: 1px solid #000;
-    cursor: pointer;
-
-    :hover {
-        font-weight: 700;
+const SnsWrap = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 124px;
+    
+    * {
+        font-size: 24px;
+        cursor: pointer;
     }
 `
 
-const SnsWrap = styled.div``
+// Lower Side
 
-const snsImg = styled.img`
-    width: 32px;
-    height: 32px;
-    background-color: pink;
-    border-radius: 50%;
-    cursor: pointer;
-`
+const LowerSide = styled.div`
+    width: 100%;
+    padding-top: 1.875rem;
 
-// react icon 삽입하기
-const Insta = styled(snsImg)``
-const Facebook = styled(snsImg)`
-    margin: 0 14px 0 14px;
+    P {
+        &:first-child {
+            font-weight: 700;
+        }
+
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.5rem;
+        color: #767676;
+    }
 `
-const Youtube = styled(snsImg)``
 
 function Footer() {
     return(
@@ -73,11 +89,18 @@ function Footer() {
                 </TextWrap>
 
                 <SnsWrap>
-                    <Insta />
-                    <Facebook />
-                    <Youtube />
+                    <FiInstagram />
+                    <FiFacebook />
+                    <FiYoutube />
                 </SnsWrap>
             </UpperSide>
+
+            <LowerSide>
+                <P>(주)HODU SHOP</P>
+                <P>제주특별자치도 제주시 동광고 137 제주코딩베이스캠프</P>
+                <P>사업자 번호 : 000-0000-0000 | 통신판매업</P>
+                <P>대표 : 김호두</P>
+            </LowerSide>
         </Cont>
     )
 }

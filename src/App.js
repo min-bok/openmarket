@@ -4,7 +4,6 @@ import Mainpage from "./pages/Mainpage";
 import Goodspage from './pages/Goodspage';
 import Loginpage from './pages/Loginpage';
 import Cartpage from './pages/Cartpage';
-import DeleteCart from './components/Cartpage/DeleteCart';
 
 function App() {
   return (
@@ -17,7 +16,6 @@ function App() {
         <Route path='/cart' element={<Cartpage />} />
       </Routes>
     </BrowserRouter>
-    {/* <DeleteCart></DeleteCart> */}
     </>
   );
 }
