@@ -22,12 +22,15 @@ function GetCartItem() {
       console.log(error);
     })
   },[])
-  
+
   return(
     <>
     {getItem.map((data) => {
       return(
-        <PrintCartItem product_id={data.product_id} quantity={data.quantity} key={data.cart_item_id} />
+        <>
+          <PrintCartItem product_id={data.product_id} quantity={data.quantity} key={data.cart_item_id} />
+          <CartItem getItem={getItem}/>
+        </>
       )
     })}
     </>

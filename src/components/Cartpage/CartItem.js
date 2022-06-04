@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Counter from './Counter';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Cont = styled.div`
   position: relative;
@@ -75,11 +76,26 @@ const Btn =  styled.button`
 `
 
 function CartItem(props) {
-    console.log(props)
+  const [goods, setGoods] = useState([]);
+    // console.log(props.getItem)
+
+    useEffect(() => {
+      axios.get(`https://openmarket.weniv.co.kr/products`)
+      .then(function(res) {
+        const dataset = res.data.results;
+
+        // console.log(props.getItem)
+        // console.log(Array.isArray(props.getItem))
+
+        // for (const i of props.getItem) {
+        //   console.log(i)
+        // }
+      })
+    },[])
 
     return(
         <>
-        <Cont>
+        {/* <Cont>
           <Checkbox type={'checkbox'} />
           <Img src={props.goods.image} />
           <InfoWrap>
@@ -95,7 +111,7 @@ function CartItem(props) {
             <P fontSize={'18px'} fontWeight={700} color={'#EB5757'}>{(props.product_id.quantity) * (props.goods.price)}원</P>
             <Btn>주문하기</Btn>
           </OrderWrap>
-        </Cont>
+        </Cont> */}
       </>
     )
 }
