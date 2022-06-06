@@ -76,50 +76,55 @@ const Btn =  styled.button`
 `
 
 function CartItem(props) {
-  const [ goods, setGoods ] = useState([]);
+  const [goods, setGoods] = useState([]);
+  const [total, SetTotal] = useState([]);
 
     useEffect(() => {
       axios.get(`https://openmarket.weniv.co.kr/products`)
       .then(function(res) {
         // 모든 제품 데이터
-        const dataset = res.data.results;
+        const dataSet = res.data.results;
+        const PRODUCTID = props.getItem.map(x => x.product_id)
 
-        for(let i = 0; i < dataset.length; i++) {
-          for(let j = 0; j < props.getItem.length; j++) {
-            if(dataset[i].product_id == props.getItem[j].product_id) {
-              setGoods(dataset[i])
+        // 총 가격 구해서 넘겨주기
+        // useState 문제 해결해야함
+        for (const Num of PRODUCTID) {
+          for (const i of dataSet) {
+            if(i.product_id === Num) {
+              // setGoods((prev) => [...prev, i])
+              console.log(i)
             }
           }
+          }
         }
-      })
+      )
     },[])
 
-    console.log(goods)
+    console.log(props.getItem)
 
     return(
-        <>
-        {goods.map(data => {
-          console.log(data)
-          return (
-            <Cont>
-              <Checkbox type={'checkbox'} />
-              <Img src={props.goods.image} />
-              <InfoWrap>
-                <P fontSize={'14px'} fontWeight={400} color={'#767676'}>{props.goods.seller_store}</P>
-                <ProductName fontSize={'18px'} fontWeight={400} color={'#000'}>{props.goods.product_name}</ProductName>
-                <P fontSize={'16px'} fontWeight={700} color={'#000'}>{props.goods.price}원</P>
-                <Shippping fontSize={'14px'} fontWeight={400} color={'#767676'}>{props.goods.shipping_method} / {props.goods.shipping_fee}</Shippping>
-              </InfoWrap>
-            
-              <Counter props={props.product_id.quantity}></Counter>
-            
-              <OrderWrap>
-                <P fontSize={'18px'} fontWeight={700} color={'#EB5757'}>{(props.product_id.quantity) * (props.goods.price)}원</P>
-                <Btn>주문하기</Btn>
-              </OrderWrap>
-            </Cont>
-          )
-        })}
+      <>
+      {goods.map(data => {
+        return(
+          <Cont key={data.product_id}>
+          <Checkbox type={'checkbox'} />
+          <Img src={data.image} />
+          <InfoWrap>
+            <P fontSize={'14px'} fontWeight={400} color={'#767676'}>{data.seller_store}</P>
+            <ProductName fontSize={'18px'} fontWeight={400} color={'#000'}>{data.product_name}</ProductName>
+            <P fontSize={'16px'} fontWeight={700} color={'#000'}>{data.price}원</P>
+            <Shippping fontSize={'14px'} fontWeight={400} color={'#767676'}>{data.shipping_method} / {data.shipping_fee}</Shippping>
+          </InfoWrap>
+        
+          {/* <Counter props={props.getItem.quantity}></Counter> */}
+        
+          <OrderWrap>
+            <P fontSize={'18px'} fontWeight={700} color={'#EB5757'}>{(1) * (data.price)}원</P>
+            <Btn>주문하기</Btn>
+          </OrderWrap>
+        </Cont>
+        )
+      })}
       </>
     )
 }
