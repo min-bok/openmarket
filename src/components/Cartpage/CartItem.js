@@ -76,42 +76,50 @@ const Btn =  styled.button`
 `
 
 function CartItem(props) {
-  const [goods, setGoods] = useState([]);
-    // console.log(props.getItem)
+  const [ goods, setGoods ] = useState([]);
 
     useEffect(() => {
       axios.get(`https://openmarket.weniv.co.kr/products`)
       .then(function(res) {
+        // 모든 제품 데이터
         const dataset = res.data.results;
 
-        // console.log(props.getItem)
-        // console.log(Array.isArray(props.getItem))
-
-        // for (const i of props.getItem) {
-        //   console.log(i)
-        // }
+        for(let i = 0; i < dataset.length; i++) {
+          for(let j = 0; j < props.getItem.length; j++) {
+            if(dataset[i].product_id == props.getItem[j].product_id) {
+              setGoods(dataset[i])
+            }
+          }
+        }
       })
     },[])
 
+    console.log(goods)
+
     return(
         <>
-        {/* <Cont>
-          <Checkbox type={'checkbox'} />
-          <Img src={props.goods.image} />
-          <InfoWrap>
-            <P fontSize={'14px'} fontWeight={400} color={'#767676'}>{props.goods.seller_store}</P>
-            <ProductName fontSize={'18px'} fontWeight={400} color={'#000'}>{props.goods.product_name}</ProductName>
-            <P fontSize={'16px'} fontWeight={700} color={'#000'}>{props.goods.price}원</P>
-            <Shippping fontSize={'14px'} fontWeight={400} color={'#767676'}>{props.goods.shipping_method} / {props.goods.shipping_fee}</Shippping>
-          </InfoWrap>
-
-          <Counter props={props.product_id.quantity}></Counter>
-
-          <OrderWrap>
-            <P fontSize={'18px'} fontWeight={700} color={'#EB5757'}>{(props.product_id.quantity) * (props.goods.price)}원</P>
-            <Btn>주문하기</Btn>
-          </OrderWrap>
-        </Cont> */}
+        {goods.map(data => {
+          console.log(data)
+          return (
+            <Cont>
+              <Checkbox type={'checkbox'} />
+              <Img src={props.goods.image} />
+              <InfoWrap>
+                <P fontSize={'14px'} fontWeight={400} color={'#767676'}>{props.goods.seller_store}</P>
+                <ProductName fontSize={'18px'} fontWeight={400} color={'#000'}>{props.goods.product_name}</ProductName>
+                <P fontSize={'16px'} fontWeight={700} color={'#000'}>{props.goods.price}원</P>
+                <Shippping fontSize={'14px'} fontWeight={400} color={'#767676'}>{props.goods.shipping_method} / {props.goods.shipping_fee}</Shippping>
+              </InfoWrap>
+            
+              <Counter props={props.product_id.quantity}></Counter>
+            
+              <OrderWrap>
+                <P fontSize={'18px'} fontWeight={700} color={'#EB5757'}>{(props.product_id.quantity) * (props.goods.price)}원</P>
+                <Btn>주문하기</Btn>
+              </OrderWrap>
+            </Cont>
+          )
+        })}
       </>
     )
 }

@@ -25,45 +25,45 @@ function GetCartItem() {
 
   return(
     <>
-    {getItem.map((data) => {
+    <CartItem getItem={getItem}/>
+    {/* {getItem.map((data) => {
       return(
         <>
           <PrintCartItem product_id={data.product_id} quantity={data.quantity} key={data.cart_item_id} />
-          <CartItem getItem={getItem}/>
         </>
       )
-    })}
+    })} */}
     </>
   )
 }
 
-function PrintCartItem(product_id) {
-  const [goods, setGoods] = useState([]);
+// function PrintCartItem(product_id) {
+//   const [goods, setGoods] = useState([]);
 
-  useEffect(() => {
-    axios.get(`https://openmarket.weniv.co.kr/products`)
-    .then(function (res) {
-        const dataSet = res.data.results;
-        for (let i of dataSet) {
-          if(i.product_id == product_id.product_id) {
-            setGoods(i)
-          }
-        }
-      })
-      .catch(function (error) {
-        // 에러 핸들링
-        console.log(error);
-      })
-      .then(function () {
-        // 항상 실행되는 영역
-      });
-    }, [])
+//   useEffect(() => {
+//     axios.get(`https://openmarket.weniv.co.kr/products`)
+//     .then(function (res) {
+//         const dataSet = res.data.results;
+//         for (let i of dataSet) {
+//           if(i.product_id == product_id.product_id) {
+//             setGoods(i)
+//           }
+//         }
+//       })
+//       .catch(function (error) {
+//         // 에러 핸들링
+//         console.log(error);
+//       })
+//       .then(function () {
+//         // 항상 실행되는 영역
+//       });
+//     }, [])
 
-    return(
-      <>
-        <CartItem goods={goods} product_id={product_id}/>
-      </>
-    )
-}
+//     return(
+//       <>
+//         <CartItem goods={goods} product_id={product_id}/>
+//       </>
+//     )
+// }
 
 export default GetCartItem;
