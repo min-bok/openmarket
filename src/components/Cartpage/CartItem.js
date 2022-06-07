@@ -78,33 +78,35 @@ const Btn =  styled.button`
 function CartItem(props) {
   const [goods, setGoods] = useState([]);
   const [total, SetTotal] = useState([]);
+  const test = [];
 
     useEffect(() => {
       axios.get(`https://openmarket.weniv.co.kr/products`)
       .then(function(res) {
-        // 모든 제품 데이터
-        const dataSet = res.data.results;
-        const PRODUCTID = props.getItem.map(x => x.product_id)
-
+        const dataSet = res.data.results; // 전체 제품 데이터 배열
+        const PRODUCTID = props.getItem.map(x => x.product_id) // 가져와야 할 데이터의 product_id 배열
+      
         // 총 가격 구해서 넘겨주기
         // useState 문제 해결해야함
         for (const Num of PRODUCTID) {
-          for (const i of dataSet) {
-            if(i.product_id === Num) {
-              // setGoods((prev) => [...prev, i])
-              console.log(i)
-            }
-          }
-          }
+          test.push(Num)
         }
-      )
+
+        for (const i of dataSet) {
+          // console.log(i)
+        }
+
+        }
+        )
     },[])
 
-    console.log(props.getItem)
+    console.log(test)
+
+    // console.log(goods)
 
     return(
       <>
-      {goods.map(data => {
+      {/* {goods.map(data => {
         return(
           <Cont key={data.product_id}>
           <Checkbox type={'checkbox'} />
@@ -116,7 +118,7 @@ function CartItem(props) {
             <Shippping fontSize={'14px'} fontWeight={400} color={'#767676'}>{data.shipping_method} / {data.shipping_fee}</Shippping>
           </InfoWrap>
         
-          {/* <Counter props={props.getItem.quantity}></Counter> */}
+          <Counter props={props.getItem.quantity}></Counter>
         
           <OrderWrap>
             <P fontSize={'18px'} fontWeight={700} color={'#EB5757'}>{(1) * (data.price)}원</P>
@@ -124,7 +126,7 @@ function CartItem(props) {
           </OrderWrap>
         </Cont>
         )
-      })}
+      })} */}
       </>
     )
 }
