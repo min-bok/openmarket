@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Counter from './Counter';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import TotalPriceCart from './TotalPriceCart';
 
 const Cont = styled.div`
   position: relative;
@@ -75,8 +76,8 @@ const Btn =  styled.button`
 `
 
 function CartItem(props) {
-    console.log(props)
-
+  const [test, setTest] = useState([]);
+  
     return(
         <>
         <Cont>
@@ -89,10 +90,10 @@ function CartItem(props) {
             <Shippping fontSize={'14px'} fontWeight={400} color={'#767676'}>{props.goods.shipping_method} / {props.goods.shipping_fee}</Shippping>
           </InfoWrap>
 
-          <Counter props={props.product_id.quantity}></Counter>
+          <Counter props={props.quantity}></Counter>
 
           <OrderWrap>
-            <P fontSize={'18px'} fontWeight={700} color={'#EB5757'}>{(props.product_id.quantity) * (props.goods.price)}원</P>
+            <P fontSize={'18px'} fontWeight={700} color={'#EB5757'}>{(props.quantity) * (props.goods.price)}원</P>
             <Btn>주문하기</Btn>
           </OrderWrap>
         </Cont>
